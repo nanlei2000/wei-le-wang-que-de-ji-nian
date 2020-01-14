@@ -4,12 +4,15 @@ interface Datum {
     university: string;
     education: '硕士研究生' | '博士研究生';
     link: [string, string][];
-    major: '材料' | '计算机' | '凝聚态物理' | '医学' | '药理学' | '自动化';
+    major: '材料' | '计算机' | '凝聚态物理' | '医学' | '药理学' | '自动化' | '航天' | '机电';
     gender: '男' | '女';
     /** TODO: */
     tutor?: string;
     tags?: string[];
 }
+/**
+ * 整理自 @see https://www.zhihu.com/question/364795757/answer/963617654?utm_source=wechat_timeline&utm_medium=social&utm_oi=63830256254976&from=timeline
+ */
 const data: Datum[] = [
     {
         name: '谭大伟',
@@ -107,6 +110,32 @@ const data: Datum[] = [
                 'https://www.zhihu.com/question/265236935']
         ],
         major: '药理学',
+        gender: '男',
+    },
+    {
+        name: '周旭',
+        date: '2017-06-10',
+        university: '西北工业大学',
+        education: '博士研究生',
+        link: [
+            ['如何看待西北工业大学6月10日晚一博士生坠楼身亡？',
+                'https://www.zhihu.com/question/60977461']
+        ],
+        major: '航天',
+        gender: '男',
+    },
+    {
+        name: '姜东生',
+        date: '2015-05-18',
+        university: '中南大学',
+        education: '硕士研究生',
+        link: [
+            ['如何评价中南大学研究生答辩未通过跳楼自杀并留下五千字遗书？',
+                'https://www.zhihu.com/question/30607078'],
+            ['中南大学自杀研究生亲哥挥泪撰文送弟：若有来生不读书，兄弟俩一起种红薯',
+                'https://mp.weixin.qq.com/s?__biz=MzA3OTg2Mjc3OA==&mid=206359406&idx=1&sn=ceb2aae2da77b89c7fed51a3fd8f67d0&scene=2&from=timeline&isappinstalled=0#rd'],
+        ],
+        major: '机电',
         gender: '男',
     },
 ];
