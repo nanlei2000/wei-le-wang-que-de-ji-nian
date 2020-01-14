@@ -139,3 +139,35 @@ const data: Datum[] = [
         gender: '男',
     },
 ];
+const tempHead = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>为了忘却的纪念</title>
+</head>
+<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<body>
+`;
+const tempTail = `
+</body>
+</html>`;
+
+const body = `<table class="table table-hover">
+        ${data.map((datum) => {
+    return `<tr>
+                <td>${datum.name}</td>
+                <td>${datum.gender}</td>
+                <td>${datum.university}</td>
+                <td>${datum.major}</td>
+                <td>${datum.education}</td>
+                <td>${datum.link.map(([title, link]) => {
+        return `<a href="${link}">${title}</a>`;
+    }).join('\n')}</td>
+            </tr>`;
+}).join('\n')}
+</table>`;
+require('fs').writeFileSync(
+    require('path').resolve(__dirname, '../index.html'),
+    Buffer.from(tempHead + body + tempTail));
