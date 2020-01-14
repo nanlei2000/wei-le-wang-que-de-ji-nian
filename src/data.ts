@@ -148,22 +148,35 @@ const tempHead = `
     <title>为了忘却的纪念</title>
 </head>
 <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<style>
+html, body, table{
+    width:100%;
+    height:100%;
+}
+
+</style>
 <body>
 `;
 const tempTail = `
 </body>
 </html>`;
 
-const body = `<table class="table table-hover">
+const body = `<table class="table 
+table-hover 
+table-sm
+">
         ${data.map((datum) => {
     return `<tr>
                 <td>${datum.name}</td>
+                <td>${datum.date}</td>
                 <td>${datum.gender}</td>
                 <td>${datum.university}</td>
                 <td>${datum.major}</td>
                 <td>${datum.education}</td>
                 <td>${datum.link.map(([title, link]) => {
-        return `<a href="${link}">${title}</a>`;
+        return `<p>
+                <a href="${link}" target="_blank">${title}</a>
+            </p>`;
     }).join('\n')}</td>
             </tr>`;
 }).join('\n')}
