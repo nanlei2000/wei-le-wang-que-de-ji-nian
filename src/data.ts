@@ -166,7 +166,7 @@ const tempTail = `
 const body = `
 <p>在因魔鬼导师而自杀的这 ${data.length} 例事件中，男性占比 ${
     calculateRate(data.filter(v => v.gender === '男').length, data.length)
-    },最多的专业是${calculateMost(data, 'major')}。</p>
+    }，最多的专业是${calculateMost(data, 'major')}。</p>
 <table class="table 
 table-hover 
 table-sm
