@@ -153,7 +153,9 @@ html, body, table{
     width:100%;
     height:100%;
 }
-
+body{
+    padding:10px;
+}
 </style>
 <body>
 `;
@@ -161,26 +163,53 @@ const tempTail = `
 </body>
 </html>`;
 
-const body = `<table class="table 
+const body = `
+<p>在因魔鬼导师而自杀的这 ${data.length} 例事件中,男性占比 ${
+    calculateRate(data.filter(v => v.gender === '男').length, data.length)
+    },最多的专业是${calculateMost(data, 'major')}。</p>
+<table class="table 
 table-hover 
 table-sm
 ">
-        ${data.map((datum) => {
-    return `<tr>
+${data.map((datum) => {
+        return `<tr>
                 <td>${datum.name}</td>
                 <td>${datum.date}</td>
                 <td>${datum.gender}</td>
                 <td>${datum.university}</td>
                 <td>${datum.major}</td>
                 <td>${datum.education}</td>
-                <td>${datum.link.map(([title, link]) => {
-        return `<p>
+                <td>${
+            datum.link.map(([title, link]) => {
+                return `<p>
                 <a href="${link}" target="_blank">${title}</a>
             </p>`;
-    }).join('\n')}</td>
+            }).join('\n')}</td>
             </tr>`;
-}).join('\n')}
+    }).join('\n')
+    }
 </table>`;
+
 require('fs').writeFileSync(
     require('path').resolve(__dirname, '../index.html'),
     Buffer.from(tempHead + body + tempTail));
+
+function calculateRate(up: number, down: number): string {
+    if (up === 0 || down === 0) {
+        return '0';
+    }
+    return Math.round((up / down) * 100) + '%';
+}
+function calculateMost(data: Datum[], key: 'major'): string {
+    const dic: { [key: string]: number | undefined; } = {};
+    for (const datum of data) {
+        if (dic[datum[key]] === undefined) {
+            dic[datum[key]] = 1;
+        } else {
+            dic[datum[key]] += 1;
+        }
+    }
+    const keys = Object.keys(dic);
+    keys.sort((a, b) => dic[b] - dic[a]);
+    return keys[0];
+}
